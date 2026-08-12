@@ -1,1 +1,6 @@
-pip install pandas pyarrow jupyter matplotlib seaborn
+# Phase 1: Data Profiling
+pandas
+pyarrow
+jupyter
+matplotlib
+seaborn
