@@ -22,3 +22,22 @@ revenue, conversion rates, and ROAS in a unified analytical layer.
 ## Status
 
 Phase 1 — Project Foundation
+
+## Current Status
+
+Phase 2 — Source System
+
+Completed:
+
+- PostgreSQL source database
+- Operational booking schema
+- Synthetic tenants and properties
+- Booking data loader
+- Source-data validation
+- Rejected-record handling
+- FastAPI REST API
+- API-key authentication
+- Pagination
+- Tenant filtering
+- Incremental timestamp filtering
+- API tests

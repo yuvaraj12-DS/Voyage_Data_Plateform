@@ -54,3 +54,5 @@ dbt will create staging, intermediate and analytical models.
 
 Airflow will coordinate ingestion, processing, transformation,
 testing and monitoring.
+
+The PostgreSQL database represents the operational booking source. FastAPI exposes the source through authenticated REST endpoints. Airbyte will consume these endpoints in the next phase.
