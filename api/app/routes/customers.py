@@ -1,3 +1,4 @@
+from datetime import datetime
 from math import ceil
 
 from fastapi import APIRouter, Depends, Query
@@ -22,6 +23,7 @@ def list_customers(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=100, ge=1, le=1000),
     tenant_id: str | None = None,
+    updated_after: datetime | None = None,
     db: Session = Depends(get_db),
 ):
     filters = []
@@ -29,17 +31,25 @@ def list_customers(
     if tenant_id:
         filters.append(Customer.tenant_id == tenant_id)
 
+    if updated_after:
+        filters.append(Customer.updated_at > updated_after)
+
     total_records = db.scalar(
         select(func.count())
         .select_from(Customer)
         .where(*filters)
     ) or 0
 
+    offset = (page - 1) * page_size
+
     statement = (
         select(Customer)
         .where(*filters)
-        .order_by(Customer.customer_id)
-        .offset((page - 1) * page_size)
+        .order_by(
+            Customer.updated_at.asc(),
+            Customer.customer_id.asc(),
+        )
+        .offset(offset)
         .limit(page_size)
     )
 
