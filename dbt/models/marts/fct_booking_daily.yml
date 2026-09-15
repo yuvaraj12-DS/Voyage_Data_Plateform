@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: fct_booking_daily
+    description: >
+      Daily booking performance by tenant and property.
+      Estimated booking value is derived from ADR multiplied
+      by room nights for completed bookings and should not be
+      interpreted as accounting revenue.
+
+    columns:
+      - name: booking_date
+        description: "Derived booking date."
+
+      - name: tenant_id
+        description: "Tenant associated with the booking."
+
+      - name: property_id
+        description: "Property associated with the booking."
+
+      - name: booking_count
+        description: "Total bookings recorded for the booking date."
+
+      - name: completed_booking_count
+        description: "Bookings with status COMPLETED."
+
+      - name: confirmed_booking_count
+        description: "Bookings with status CONFIRMED."
+
+      - name: cancelled_booking_count
+        description: "Bookings with status CANCELLED."
+
+      - name: room_nights
+        description: "Total room nights associated with the bookings."
+
+      - name: estimated_completed_booking_value
+        description: >
+          Derived metric calculated as ADR multiplied by room nights
+          for completed bookings. This is a value estimate, not
+          source-system accounting revenue.
+
+      - name: average_completed_adr
+        description: "Average ADR for completed bookings."
+
+      - name: cancellation_rate
+        description: "Cancelled bookings divided by total bookings."

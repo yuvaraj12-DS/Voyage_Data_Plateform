@@ -5,7 +5,7 @@ from api.app.database import engine
 from api.app.models import Customer
 
 
-CUSTOMER_ID = "CUS073716"
+CUSTOMER_ID = "CUS073715"
 
 
 with Session(engine) as db:

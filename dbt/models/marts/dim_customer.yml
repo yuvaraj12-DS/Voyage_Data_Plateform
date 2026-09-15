@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: >
+      Customer dimension enriched with booking behavior.
+      One row represents the current customer state for a tenant.
+
+    columns:
+
+      - name: customer_id
+        description: "Unique customer identifier within the platform."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: tenant_id
+        description: "Tenant associated with the customer."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_tenant')
+                field: tenant_id
+
+      - name: country
+        description: "Customer country code."
+
+      - name: booking_count
+        description: "Total bookings associated with the customer."
+        data_tests:
+          - not_null
+
+      - name: total_room_nights
+        description: "Total room nights across the customer's bookings."
+        data_tests:
+          - not_null
+
+      - name: estimated_completed_booking_value
+        description: >
+          Estimated completed booking value derived from ADR multiplied
+          by room nights. This is not accounting revenue.
+        data_tests:
+          - not_null
+
+      - name: is_repeat_customer
+        description: "True when the customer has more than one booking."
+        data_tests:
+          - not_null

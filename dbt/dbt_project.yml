@@ -1,0 +1,30 @@
+name: voyage_data_platform
+version: "1.0.0"
+
+config-version: 2
+
+profile: voyage_data_platform
+
+model-paths:
+  - models
+
+test-paths:
+  - tests
+
+seed-paths:
+  - seeds
+
+macro-paths:
+  - macros
+
+models:
+  voyage_data_platform:
+
+    staging:
+      +materialized: view
+
+    intermediate:
+      +materialized: view
+
+    marts:
+      +materialized: table

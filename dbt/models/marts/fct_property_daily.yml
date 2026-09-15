@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: fct_property_daily
+    description: >
+      Daily booking performance by property and tenant.
+      Estimated completed booking value is derived from ADR
+      multiplied by room nights and is not accounting revenue.
+
+    columns:
+
+      - name: property_id
+        description: "Unique property identifier."
+        data_tests:
+          - not_null
+
+      - name: tenant_id
+        description: "Tenant associated with the property."
+        data_tests:
+          - not_null
+
+      - name: booking_date
+        description: "Booking date."
+        data_tests:
+          - not_null
+
+      - name: booking_count
+        description: "Total bookings for the property on the booking date."
+        data_tests:
+          - not_null
+
+      - name: completed_booking_count
+        description: "Completed bookings."
+        data_tests:
+          - not_null
+
+      - name: cancelled_booking_count
+        description: "Cancelled bookings."
+        data_tests:
+          - not_null
+
+      - name: room_nights
+        description: "Total room nights."
+        data_tests:
+          - not_null
+
+      - name: cancellation_rate
+        description: "Cancelled bookings divided by total bookings."
+        data_tests:
+          - not_null

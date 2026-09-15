@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Reusable calendar dimension for reporting across booking and marketing data."
+
+    columns:
+      - name: date_day
+        description: "Calendar date."
+        tests:
+          - not_null
+          - unique
+
+      - name: year
+        tests:
+          - not_null
+
+      - name: quarter
+        tests:
+          - not_null
+
+      - name: month
+        tests:
+          - not_null
+
+      - name: day_name
+        tests:
+          - not_null
+
+      - name: is_weekend
+        tests:
+          - not_null

@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: voyage_silver
+    description: "Trusted Silver-layer tables maintained in Databricks."
+
+    database: voyage
+    schema: silver
+
+    tables:
+      - name: fact_booking
+        description: "Current-state booking records from the Databricks Silver layer."
+
+      - name: dim_customer
+        description: "Current-state customer dimension."
+
+      - name: dim_property
+        description: "Current-state property dimension."
+
+      - name: dim_tenant
+        description: "Current-state tenant dimension."

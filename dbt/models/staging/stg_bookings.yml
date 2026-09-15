@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: stg_bookings
+    description: "Analytics-facing representation of current booking records."
+
+    columns:
+
+      - name: booking_id
+        description: "Unique identifier for a booking."
+        tests:
+          - not_null
+          - unique
+
+      - name: tenant_id
+        description: "Tenant associated with the booking."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_tenant')
+                field: tenant_id
+
+      - name: property_id
+        description: "Property associated with the booking."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_property')
+                field: property_id
+
+      - name: customer_id
+        description: "Customer associated with the booking."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_customer')
+                field: customer_id
+
+      - name: booking_date
+        description: "Derived booking date."
+        tests:
+          - not_null
+
+      - name: status
+        description: "Current booking status."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - CONFIRMED
+                  - CANCELLED
+                  - COMPLETED
