@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: stg_campaign_daily_metrics
+    description: "Staging model for daily campaign performance metrics."
+
+    columns:
+      - name: metric_id
+        tests:
+          - not_null
+          - unique
+
+      - name: date
+        tests:
+          - not_null
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_tenant')
+                field: tenant_id
+
+      - name: campaign_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_campaign')
+                field: campaign_id
+
+      - name: impressions
+        tests:
+          - not_null
+
+      - name: clicks
+        tests:
+          - not_null
+
+      - name: spend
+        tests:
+          - not_null
+
+      - name: conversions
+        tests:
+          - not_null
+
+      - name: revenue
+        tests:
+          - not_null

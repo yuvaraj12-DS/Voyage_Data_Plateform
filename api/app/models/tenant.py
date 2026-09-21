@@ -53,3 +53,7 @@ class Tenant(Base):
         "Booking",
         back_populates="tenant",
     )
+    campaigns = relationship(
+        "Campaign",
+        back_populates="tenant",
+    )

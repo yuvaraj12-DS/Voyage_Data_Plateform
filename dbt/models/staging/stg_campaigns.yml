@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_campaigns
+    description: "Staging model for marketing campaigns sourced from the Silver campaign dimension."
+
+    columns:
+      - name: campaign_id
+        tests:
+          - not_null
+          - unique
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_tenant')
+                field: tenant_id
+
+      - name: campaign_name
+        tests:
+          - not_null
+
+      - name: channel
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['google', 'meta']
+
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'PAUSED', 'ENDED']
+
+      - name: start_date
+        tests:
+          - not_null
+
+      - name: end_date
+        tests:
+          - not_null

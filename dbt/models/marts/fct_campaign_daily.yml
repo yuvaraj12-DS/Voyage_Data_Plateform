@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: fct_campaign_daily
+    description: >
+      Daily campaign performance mart combining campaign attributes with
+      advertising metrics and derived performance measures.
+
+    columns:
+      - name: date
+        tests:
+          - not_null
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_tenants')
+                field: tenant_id
+
+      - name: campaign_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_campaigns')
+                field: campaign_id
+
+      - name: campaign_name
+        tests:
+          - not_null
+
+      - name: channel
+        tests:
+          - not_null
+
+      - name: impressions
+        tests:
+          - not_null
+
+      - name: clicks
+        tests:
+          - not_null
+
+      - name: spend
+        tests:
+          - not_null
+
+      - name: conversions
+        tests:
+          - not_null
+
+      - name: revenue
+        tests:
+          - not_null
+
+      - name: ctr
+        tests:
+          - not_null
+
+      - name: cpc
+        tests:
+          - not_null
+
+      - name: conversion_rate
+        tests:
+          - not_null
+
+      - name: roas
+        tests:
+          - not_null
+
+      - name: updated_at
+        tests:
+          - not_null

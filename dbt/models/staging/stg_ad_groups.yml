@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_ad_groups
+    description: "Staging model for marketing ad groups."
+
+    columns:
+      - name: ad_group_id
+        tests:
+          - not_null
+          - unique
+
+      - name: campaign_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_campaign')
+                field: campaign_id
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_tenant')
+                field: tenant_id
+
+      - name: ad_group_name
+        tests:
+          - not_null
+
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'PAUSED', 'ENDED']

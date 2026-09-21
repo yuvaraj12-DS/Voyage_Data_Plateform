@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_ads
+    description: "Staging model for individual marketing advertisements."
+
+    columns:
+      - name: ad_id
+        tests:
+          - not_null
+          - unique
+
+      - name: ad_group_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_ad_group')
+                field: ad_group_id
+
+      - name: campaign_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_campaign')
+                field: campaign_id
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: source('voyage_silver', 'dim_tenant')
+                field: tenant_id
+
+      - name: creative_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['IMAGE', 'TEXT']
+
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'PAUSED', 'ENDED']

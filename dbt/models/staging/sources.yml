@@ -19,3 +19,11 @@ sources:
 
       - name: dim_tenant
         description: "Current-state tenant dimension."
+      - name: dim_campaign
+        description: "Current-state campaign dimension."
+      - name: dim_ad_group
+        description: "Current-state ad group dimension."
+      - name: dim_ad
+        description: "Current-state ad dimension."
+      - name: fact_campaign_daily
+        description: "Daily campaign performance metrics."
