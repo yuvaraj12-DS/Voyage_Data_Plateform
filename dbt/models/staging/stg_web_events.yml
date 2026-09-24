@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_web_events
+    description: "Cleaned and renamed website events from silver"
+    columns:
+      - name: event_id
+        description: "Unique event identifier"
+        tests: [not_null, unique]
+      - name: session_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_web_sessions')
+                field: session_id
+      - name: tenant_id
+        tests: [not_null]
+      - name: event_name
+        description: "Event type (search_availability, view_property, begin_booking, purchase)"
+        tests: [not_null]
+      - name: event_value
+        description: "Event payload value, nullable"
+      - name: page_path
+        description: "URL path where the event was triggered"
+      - name: event_timestamp
+        tests: [not_null]
+      - name: updated_at

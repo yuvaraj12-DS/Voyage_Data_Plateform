@@ -12,6 +12,9 @@ from api.app.routes import (
     campaign_performance,
     properties,
     tenants,
+    web_events,
+    web_page_views,
+    web_sessions,
 )
 
 
@@ -29,6 +32,9 @@ app.include_router(campaigns.router)
 app.include_router(ad_groups.router)
 app.include_router(ads.router)
 app.include_router(campaign_performance.router)
+app.include_router(web_sessions.router)
+app.include_router(web_events.router)
+app.include_router(web_page_views.router)
 
 @app.get("/health")
 def health(

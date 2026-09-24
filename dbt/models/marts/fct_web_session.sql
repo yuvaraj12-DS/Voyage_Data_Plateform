@@ -1,0 +1,23 @@
+select
+    session_id,
+    tenant_id,
+    user_id,
+    session_start,
+    session_end,
+    source,
+    medium,
+    campaign_id,
+    device,
+    country,
+    landing_page,
+    page_view_count,
+    event_count,
+    search_count,
+    property_view_count,
+    booking_start_count,
+    conversion_count,
+    conversion_value,
+    engaged_session,
+    session_duration_seconds,
+    updated_at
+from {{ ref('int_web_session_metrics') }}

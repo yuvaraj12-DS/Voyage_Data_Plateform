@@ -27,3 +27,9 @@ sources:
         description: "Current-state ad dimension."
       - name: fact_campaign_daily
         description: "Daily campaign performance metrics."
+      - name : fact_web_session
+        description: "Current-state web session records."
+      - name: fact_web_page_view
+        description: "Current-state web page view records."
+      - name : fact_web_event
+        description: "Current-state web event records."

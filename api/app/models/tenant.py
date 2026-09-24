@@ -57,3 +57,15 @@ class Tenant(Base):
         "Campaign",
         back_populates="tenant",
     )
+    web_sessions = relationship(
+        "WebSession",
+        back_populates="tenant",
+    )
+    web_events = relationship(
+        "WebEvent",
+        back_populates="tenant",
+    )
+    web_page_views = relationship(
+        "WebPageView",
+        back_populates="tenant",
+    )

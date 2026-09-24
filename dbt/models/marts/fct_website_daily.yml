@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: fct_website_daily
+    description: "Daily website metrics aggregated by tenant, source, medium, and campaign"
+    columns:
+      - name: date
+        description: "Calendar date derived from session_start"
+        tests: [not_null]
+      - name: tenant_id
+        tests: [not_null]
+      - name: source
+        tests: [not_null]
+      - name: medium
+        tests: [not_null]
+      - name: campaign_id
+        description: "Campaign identifier, nullable for organic/direct traffic"
+      - name: sessions
+        description: "Total number of sessions"
+      - name: engaged_sessions
+        description: "Sessions with 2+ page views or at least one event"
+      - name: page_views
+        description: "Total page views across all sessions"
+      - name: events
+        description: "Total events fired across all sessions"
+      - name: searches
+        description: "Total search_availability events"
+      - name: property_views
+        description: "Total view_property events"
+      - name: booking_starts
+        description: "Total begin_booking events"
+      - name: conversions
+        description: "Total purchase events"
+      - name: conversion_value
+        description: "Sum of purchase event values"
+      - name: conversion_rate
+        description: "Conversions divided by sessions"
+      - name: campaign_name
+        description: "Campaign name from stg_campaigns"
+      - name: channel
+        description: "Campaign channel from stg_campaigns"
+      - name: campaign_type
+        description: "Campaign type from stg_campaigns"

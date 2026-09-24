@@ -7,6 +7,9 @@ from api.app.models.campaign import Campaign
 from api.app.models.ad_group import AdGroup
 from api.app.models.ad import Ad
 from api.app.models.campaign_daily_metric import CampaignDailyMetric
+from api.app.models.web_session import WebSession
+from api.app.models.web_event import WebEvent
+from api.app.models.web_page_view import WebPageView
 
 __all__ = [
     "Booking",
@@ -18,4 +21,7 @@ __all__ = [
     "AdGroup",
     "Ad",
     "CampaignDailyMetric",
+    "WebSession",
+    "WebEvent",
+    "WebPageView"
 ]

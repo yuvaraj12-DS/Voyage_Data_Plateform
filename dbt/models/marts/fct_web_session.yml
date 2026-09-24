@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: fct_web_session
+    description: "Session-level fact table with engagement and conversion metrics"
+    columns:
+      - name: session_id
+        description: "Unique session identifier"
+        tests: [not_null, unique]
+      - name: tenant_id
+        tests: [not_null]
+      - name: user_id
+        description: "User identifier"
+      - name: session_start
+        tests: [not_null]
+      - name: session_end
+        tests: [not_null]
+      - name: source
+        tests: [not_null]
+      - name: medium
+        tests: [not_null]
+      - name: campaign_id
+        description: "Campaign identifier, nullable for organic/direct traffic"
+      - name: device
+        description: "Device type (mobile, desktop, tablet)"
+      - name: country
+        description: "Country code"
+      - name: landing_page
+        description: "First page viewed in the session"
+      - name: page_view_count
+        description: "Number of page views in the session"
+      - name: event_count
+        description: "Total events fired in the session"
+      - name: search_count
+        description: "Number of search_availability events"
+      - name: property_view_count
+        description: "Number of view_property events"
+      - name: booking_start_count
+        description: "Number of begin_booking events"
+      - name: conversion_count
+        description: "Number of purchase events"
+      - name: conversion_value
+        description: "Sum of purchase event values"
+      - name: engaged_session
+        description: "1 if session had 2+ page views or any events, else 0"
+      - name: session_duration_seconds
+        description: "Duration from session_start to session_end in seconds"
+      - name: updated_at
+        description: "Timestamp of when the record was last updated"

@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_web_page_views
+    description: "Cleaned and renamed website page views from silver"
+    columns:
+      - name: page_view_id
+        description: "Unique page view identifier"
+        tests: [not_null, unique]
+      - name: session_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+               to: ref('stg_web_sessions')
+               field: session_id
+      - name: tenant_id
+        tests: [not_null]
+      - name: page_path
+        description: "URL path of the viewed page"
+      - name: page_title
+        description: "Title of the viewed page"
+      - name: referrer
+        description: "Referrer URL"
+      - name: duration_seconds
+        description: "Time spent on page in seconds"
+      - name: page_viewed_at
+        tests: [not_null]
+      - name: updated_at

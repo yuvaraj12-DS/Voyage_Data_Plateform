@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_web_sessions
+    description: "Cleaned and renamed website sessions from silver"
+    columns:
+      - name: session_id
+        description: "Unique session identifier"
+        tests: [not_null, unique]
+      - name: tenant_id
+        tests: [not_null]
+      - name: user_id
+        description: "User identifier"
+      - name: device
+        description: "Device type (mobile, desktop, tablet)"
+      - name: country
+        description: "Country code"
+      - name: landing_page
+        description: "First page viewed in the session"
+      - name: medium
+        tests: [not_null]
+      - name: source
+        tests: [not_null]
+      - name: campaign_id
+        description: "Campaign identifier, nullable for organic/direct traffic"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_campaigns')
+                field: campaign_id
+      - name: session_start
+        tests: [not_null]
+      - name: session_end
+        tests: [not_null]
+      - name: updated_at
+
