@@ -1,0 +1,58 @@
+version: 2
+
+models:
+
+  - name: fct_marketing_attribution
+
+    description: >
+      Booking-level marketing attribution fact for the synthetic 2026
+      marketing journey. Supports first-click, last-click, and linear
+      attribution using a 30-day lookback window.
+
+    columns:
+
+      - name: booking_id
+        description: Synthetic 2026 marketing booking identifier.
+        tests:
+          - not_null
+
+      - name: conversion_id
+        description: Website purchase event that generated the booking.
+        tests:
+          - not_null
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_tenants')
+                field: tenant_id
+
+      - name: campaign_id
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('stg_campaigns')
+                field: campaign_id
+
+      - name: attribution_model
+        tests:
+          - not_null
+
+      - name: attribution_weight
+        tests:
+          - not_null
+
+      - name: attributed_bookings
+        tests:
+          - not_null
+
+      - name: attributed_gross_booking_value
+        tests:
+          - not_null
+
+      - name: attributed_net_revenue
+        tests:
+          - not_null

@@ -33,3 +33,5 @@ sources:
         description: "Current-state web page view records."
       - name : fact_web_event
         description: "Current-state web event records."
+      - name : fact_marketing_booking
+        description: "Current-state marketing booking records."

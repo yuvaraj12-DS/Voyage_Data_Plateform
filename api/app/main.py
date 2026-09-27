@@ -7,6 +7,7 @@ from api.app.routes import (
     ad_groups,
     ads,
     bookings,
+    marketing_bookings,
     campaigns,
     customers,
     campaign_performance,
@@ -35,6 +36,7 @@ app.include_router(campaign_performance.router)
 app.include_router(web_sessions.router)
 app.include_router(web_events.router)
 app.include_router(web_page_views.router)
+app.include_router(marketing_bookings.router)
 
 @app.get("/health")
 def health(

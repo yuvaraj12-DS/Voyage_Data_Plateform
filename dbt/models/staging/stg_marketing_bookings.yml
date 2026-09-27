@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: stg_marketing_bookings
+    description: "Analytics-facing representation of marketing booking records."
+
+    columns:
+
+      - name: booking_id
+        description: "Unique identifier for a marketing booking."
+        tests:
+          - not_null
+          - unique
+
+      - name: conversion_id
+        description: "Web event that triggered the booking conversion."
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_web_events')
+                field: event_id
+
+      - name: tenant_id
+        description: "Tenant associated with the booking."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_tenants')
+                field: tenant_id
+
+      - name: property_id
+        description: "Property associated with the booking."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_properties')
+                field: property_id
+
+      - name: session_id
+        description: "Web session associated with the booking."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_web_sessions')
+                field: session_id
+
+      - name: booking_status
+        description: "Current booking status."
+        tests:
+          - not_null
+
+      - name: gross_booking_value
+        description: "Gross booking value."
+        tests:
+          - not_null
+
+      - name: net_revenue
+        description: "Net revenue from the booking."
+        tests:
+          - not_null
