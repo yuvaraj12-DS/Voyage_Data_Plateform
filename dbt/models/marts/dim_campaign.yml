@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_campaign
+    description: >
+      Campaign dimension used by marketing performance, website funnel,
+      attribution, and Power BI reporting.
+
+    columns:
+      - name: campaign_id
+        tests:
+          - not_null
+          - unique
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+               to: ref('dim_tenant')
+               field: tenant_id
+
+      - name: campaign_name
+        tests:
+          - not_null
+
+      - name: channel
+        tests:
+          - not_null

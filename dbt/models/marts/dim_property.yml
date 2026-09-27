@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: dim_property
+    description: >
+      Property dimension used for historical booking and property performance
+      reporting.
+
+    columns:
+      - name: property_id
+        tests:
+          - not_null
+          - unique
+
+      - name: tenant_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+               to: ref('dim_tenant')
+               field: tenant_id

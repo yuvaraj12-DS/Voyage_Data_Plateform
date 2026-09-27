@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_tenant
+    description: >
+      Tenant dimension used by analytical and Power BI models.
+
+    columns:
+      - name: tenant_id
+        tests:
+          - not_null
+          - unique
