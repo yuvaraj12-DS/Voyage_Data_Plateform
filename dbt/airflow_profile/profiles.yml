@@ -10,8 +10,8 @@ voyage_data_platform:
       catalog: voyage
       schema: dbt_dev
 
-      host: dbc-785afaa9-cda7.cloud.databricks.com
-      http_path: /sql/1.0/warehouses/ccb668a2e87c2cc9
+      host: {{ env_var('YOUR_DATABRICKS_WORKSPACE_HOST') }}
+      http_path: {{ env_var('YOUR_SQL_WAREHOUSE_HTTP_PATH') }}
 
       token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
 
