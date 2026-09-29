@@ -1,0 +1,18 @@
+voyage_data_platform:
+  target: orchestration
+
+  outputs:
+
+    orchestration:
+      type: databricks
+      method: http
+
+      catalog: voyage
+      schema: dbt_dev
+
+      host: dbc-785afaa9-cda7.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/ccb668a2e87c2cc9
+
+      token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+
+      threads: 2
