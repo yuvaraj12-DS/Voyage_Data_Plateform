@@ -3,8 +3,8 @@ with date_range as (
     select
         explode(
             sequence(
-                to_date('2014-01-01'),
-                to_date('2018-12-31'),
+                to_date('2013-01-01'),
+                to_date('2027-12-31'),
                 interval 1 day
             )
         ) as date_day
