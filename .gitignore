@@ -29,3 +29,6 @@ Thumbs.db
 logs/
 dbt/logs/
 dbt/target/
+
+# Airflow---
+orchestration/airflow/.env.airflow
