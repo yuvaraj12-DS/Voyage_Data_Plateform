@@ -19,7 +19,7 @@
 # COMMAND ----------
 
 # DBTITLE 1,Monitoring summary logic
-"""
+'''
 # Monitoring Summary — finalizes the pipeline_run_audit row
 # Reads freshness + DQ results, computes overall status, prints summary
 
@@ -152,7 +152,7 @@ if error_message != "NULL":
 print(f"\n{'='*60}")
 print(f"  Monitoring summary complete.")
 print(f"{'='*60}")
-"""
+'''
 
 # COMMAND ----------
 
