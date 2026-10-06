@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # DBTITLE 1,Monitoring Summary
 # MAGIC %md
 # MAGIC # Monitoring Summary
@@ -517,31 +521,33 @@ def sql_string(value):
 # This also makes monitoring_summary idempotent.
 # ---------------------------------------------------------------------------
 
+from pyspark.sql.types import StructType, StructField, StringType
+
+summary_schema = StructType([
+    StructField("run_id", StringType(), False),
+    StructField("pipeline_name", StringType(), False),
+    StructField("status", StringType(), True),
+    StructField("airbyte_status", StringType(), True),
+    StructField("databricks_status", StringType(), True),
+    StructField("dbt_status", StringType(), True),
+    StructField("dq_status", StringType(), True),
+    StructField("freshness_status", StringType(), True),
+    StructField("error_message", StringType(), True),
+])
+
 summary_df = spark.createDataFrame(
-    [
-        (
-            pipeline_run_id,
-            "voyage_daily_pipeline",
-            overall_status,
-            str(airbyte_status),
-            databricks_status,
-            dbt_status,
-            dq_status,
-            freshness_status,
-            error_message,
-        )
-    ],
-    [
-        "run_id",
-        "pipeline_name",
-        "status",
-        "airbyte_status",
-        "databricks_status",
-        "dbt_status",
-        "dq_status",
-        "freshness_status",
-        "error_message",
-    ],
+    [(
+        str(pipeline_run_id),
+        "voyage_daily_pipeline",
+        str(overall_status),
+        str(airbyte_status),
+        str(databricks_status),
+        str(dbt_status),
+        str(dq_status),
+        str(freshness_status),
+        error_message,
+    )],
+    schema=summary_schema
 )
 
 summary_df.createOrReplaceTempView(
