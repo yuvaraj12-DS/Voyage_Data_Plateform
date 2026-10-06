@@ -22,123 +22,110 @@
 #
 # Finalizes voyage.monitoring.pipeline_run_audit.
 #
-# Reads:
-#   voyage.monitoring.freshness_results
-#   voyage.monitoring.data_quality_results
-#   existing pipeline_run_audit stage statuses
+# Status sources:
 #
-# The notebook does NOT hard-code Airbyte / Databricks / dbt as SUCCESS.
+# Airbyte:
+#   Passed from Airflow as a Databricks job parameter.
 #
-# It supports:
-#   PASS
-#   WARN
-#   FAIL
-#   SKIPPED
-#   N/A
-#   UNKNOWN
+# Freshness / dbt / validation / DQ:
+#   Passed as Databricks task result states.
 #
-# Recommended Airflow / Databricks Job behavior:
-#   monitoring_summary should run with ALL_DONE so that
-#   monitoring is recorded even when an upstream task fails.
+# The monitoring_summary task should use:
+#
+#   Run if = ALL_DONE
+#
+# so that it runs even when an upstream task fails.
 
 
 from datetime import datetime
 
 
 # ---------------------------------------------------------------------------
-# Pipeline run ID
+# Helper: get widget safely
 # ---------------------------------------------------------------------------
 
-try:
-    pipeline_run_id = dbutils.widgets.get("pipeline_run_id")
-except Exception:
-    pipeline_run_id = (
-        f"manual_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-    )
+def get_widget(name, default="UNKNOWN"):
 
-print(f"Pipeline run ID: {pipeline_run_id}")
-
-
-# ---------------------------------------------------------------------------
-# Helper: optional widget
-# ---------------------------------------------------------------------------
-
-def get_optional_widget(name):
     try:
         value = dbutils.widgets.get(name)
 
         if value is not None and str(value).strip():
+
             return str(value).strip()
 
     except Exception:
+
         pass
 
-    return None
+    return default
 
 
 # ---------------------------------------------------------------------------
-# Read existing audit row
+# Pipeline run ID
 # ---------------------------------------------------------------------------
 
-existing_rows = spark.sql(
-    f"""
-    SELECT
-        run_id,
-        started_at,
-        airbyte_status,
-        databricks_status,
-        dbt_status
-    FROM voyage.monitoring.pipeline_run_audit
-    WHERE run_id = '{pipeline_run_id}'
-    """
-).collect()
-
-
-existing = existing_rows[0] if existing_rows else None
-
-
-# ---------------------------------------------------------------------------
-# Determine stage statuses
-#
-# Priority:
-# 1. Explicit widget value
-# 2. Existing audit row value
-# 3. UNKNOWN
-# ---------------------------------------------------------------------------
-
-airbyte_status = (
-    get_optional_widget("airbyte_status")
-    or (
-        existing["airbyte_status"]
-        if existing is not None
-        and existing["airbyte_status"] is not None
-        else None
-    )
-    or "UNKNOWN"
+pipeline_run_id = get_widget(
+    "pipeline_run_id",
+    f"manual_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
 )
 
 
-databricks_status = (
-    get_optional_widget("databricks_status")
-    or (
-        existing["databricks_status"]
-        if existing is not None
-        and existing["databricks_status"] is not None
-        else None
-    )
-    or "UNKNOWN"
+# ---------------------------------------------------------------------------
+# External / upstream statuses
+# ---------------------------------------------------------------------------
+
+airbyte_status = get_widget(
+    "airbyte_status",
+    "UNKNOWN",
 )
 
 
-dbt_status = (
-    get_optional_widget("dbt_status")
-    or (
-        existing["dbt_status"]
-        if existing is not None
-        and existing["dbt_status"] is not None
-        else None
-    )
-    or "UNKNOWN"
+freshness_task_state = get_widget(
+    "freshness_task_state",
+    "UNKNOWN",
+).lower()
+
+
+dbt_task_state = get_widget(
+    "dbt_task_state",
+    "UNKNOWN",
+).lower()
+
+
+validation_task_state = get_widget(
+    "validation_task_state",
+    "UNKNOWN",
+).lower()
+
+
+dq_task_state = get_widget(
+    "dq_task_state",
+    "UNKNOWN",
+).lower()
+
+
+print(
+    f"Pipeline run ID: {pipeline_run_id}"
+)
+
+print(
+    f"Airbyte status: {airbyte_status}"
+)
+
+print(
+    f"Freshness task state: {freshness_task_state}"
+)
+
+print(
+    f"dbt task state: {dbt_task_state}"
+)
+
+print(
+    f"Validation task state: {validation_task_state}"
+)
+
+print(
+    f"DQ task state: {dq_task_state}"
 )
 
 
@@ -214,12 +201,25 @@ dq_rows = spark.sql(
 
 
 # ---------------------------------------------------------------------------
-# Determine DQ status
+# Normalize DQ status
 # ---------------------------------------------------------------------------
 
-if not dq_rows:
+if dq_task_state in {
+    "upstream_failed",
+    "upstream_canceled",
+    "excluded",
+    "canceled",
+}:
 
     dq_status = "SKIPPED"
+
+elif dq_task_state in {
+    "failed",
+    "timedout",
+    "evicted",
+}:
+
+    dq_status = "FAIL"
 
 elif any(
     row["status"] == "FAIL"
@@ -235,59 +235,148 @@ elif any(
 
     dq_status = "SKIPPED"
 
-else:
+elif dq_rows:
 
     dq_status = "PASS"
 
+else:
 
-# ---------------------------------------------------------------------------
-# Normalize stage statuses
-# ---------------------------------------------------------------------------
-
-STAGE_FAILURES = {
-    "FAIL",
-    "FAILED",
-    "ERROR",
-    "CANCELLED",
-    "TIMEOUT",
-}
-
-STAGE_UNKNOWN = {
-    "UNKNOWN",
-    "SKIPPED",
-}
+    dq_status = "SKIPPED"
 
 
 # ---------------------------------------------------------------------------
-# Determine overall status
+# Normalize dbt status
 # ---------------------------------------------------------------------------
 
-all_stage_statuses = [
-    airbyte_status.upper(),
-    databricks_status.upper(),
-    dbt_status.upper(),
-    dq_status.upper(),
-    freshness_status.upper(),
+if dbt_task_state == "success":
+
+    dbt_status = "SUCCESS"
+
+elif dbt_task_state in {
+    "failed",
+    "canceled",
+    "timedout",
+    "evicted",
+}:
+
+    dbt_status = "FAILED"
+
+elif dbt_task_state in {
+    "upstream_failed",
+    "upstream_canceled",
+    "excluded",
+}:
+
+    dbt_status = "NOT_RUN"
+
+else:
+
+    dbt_status = "UNKNOWN"
+
+
+# ---------------------------------------------------------------------------
+# Normalize Databricks processing status
+#
+# This represents the Databricks transformation portion of
+# this pipeline run, not the health of the Databricks platform itself.
+# ---------------------------------------------------------------------------
+
+databricks_task_states = [
+    freshness_task_state,
+    dbt_task_state,
+    validation_task_state,
+    dq_task_state,
 ]
 
 
 if any(
-    status in STAGE_FAILURES
-    for status in all_stage_statuses
+    state in {
+        "failed",
+        "canceled",
+        "timedout",
+        "evicted",
+        "upstream_failed",
+        "upstream_canceled",
+    }
+    for state in databricks_task_states
+):
+
+    databricks_status = "FAILED"
+
+elif all(
+    state == "success"
+    for state in databricks_task_states
+):
+
+    databricks_status = "SUCCESS"
+
+elif any(
+    state in {
+        "excluded",
+        "upstream_failed",
+        "upstream_canceled",
+    }
+    for state in databricks_task_states
+):
+
+    databricks_status = "PARTIAL"
+
+else:
+
+    databricks_status = "UNKNOWN"
+
+
+# ---------------------------------------------------------------------------
+# Overall status
+# ---------------------------------------------------------------------------
+
+failure_statuses = {
+    "FAILED",
+    "FAIL",
+    "ERROR",
+}
+
+not_run_statuses = {
+    "NOT_RUN",
+    "SKIPPED",
+    "UNKNOWN",
+}
+
+
+if (
+    str(airbyte_status).upper() in failure_statuses
+    or databricks_status == "FAILED"
+    or dbt_status == "FAILED"
+    or freshness_status == "FAIL"
+    or dq_status == "FAIL"
 ):
 
     overall_status = "FAILED"
 
-elif any(
-    status in STAGE_UNKNOWN
-    for status in all_stage_statuses
+
+elif (
+    freshness_status == "WARN"
+):
+
+    overall_status = "SUCCESS_WITH_WARNINGS"
+
+
+elif (
+    databricks_status == "PARTIAL"
+    or dbt_status in not_run_statuses
+    or dq_status == "SKIPPED"
+):
+
+    overall_status = "PARTIAL"
+
+
+elif (
+    str(airbyte_status).upper() == "UNKNOWN"
+    or databricks_status == "UNKNOWN"
 ):
 
     overall_status = "UNKNOWN"
 
-elif freshness_status == "WARN":
-
-    overall_status = "SUCCESS_WITH_WARNINGS"
 
 else:
 
@@ -295,13 +384,28 @@ else:
 
 
 # ---------------------------------------------------------------------------
-# Build error / warning message
+# Build message list
 # ---------------------------------------------------------------------------
 
 messages = []
 
 
-# Freshness errors
+# Airbyte
+
+if str(airbyte_status).upper() in failure_statuses:
+
+    messages.append(
+        f"Airbyte status: {airbyte_status}"
+    )
+
+elif str(airbyte_status).upper() == "UNKNOWN":
+
+    messages.append(
+        "Airbyte status unknown"
+    )
+
+
+# Freshness
 
 freshness_failures = [
     row["dataset"]
@@ -317,7 +421,46 @@ if freshness_failures:
     )
 
 
-# DQ failures
+# dbt
+
+if dbt_status == "FAILED":
+
+    messages.append(
+        "dbt build failed"
+    )
+
+elif dbt_status == "NOT_RUN":
+
+    messages.append(
+        "dbt build not run because an upstream task failed"
+    )
+
+
+# Validation
+
+if validation_task_state in {
+    "failed",
+    "timedout",
+    "canceled",
+    "evicted",
+}:
+
+    messages.append(
+        "Pipeline validation failed"
+    )
+
+elif validation_task_state in {
+    "upstream_failed",
+    "upstream_canceled",
+    "excluded",
+}:
+
+    messages.append(
+        "Pipeline validation not run"
+    )
+
+
+# DQ
 
 dq_failures = [
     row["check_name"]
@@ -332,52 +475,16 @@ if dq_failures:
         + ", ".join(dq_failures)
     )
 
-
-# DQ skipped
-
-dq_skipped = [
-    row["check_name"]
-    for row in dq_rows
-    if row["status"] == "SKIPPED"
-]
-
-if dq_skipped:
+elif dq_status == "SKIPPED":
 
     messages.append(
-        "DQ skipped: "
-        + ", ".join(dq_skipped)
+        "DQ monitoring skipped"
     )
 
 
-# Stage failures
-
-for stage_name, stage_status in [
-    ("Airbyte", airbyte_status),
-    ("Databricks", databricks_status),
-    ("dbt", dbt_status),
-]:
-
-    if stage_status.upper() in STAGE_FAILURES:
-
-        messages.append(
-            f"{stage_name} status: {stage_status}"
-        )
-
-
-# Stage unknown
-
-for stage_name, stage_status in [
-    ("Airbyte", airbyte_status),
-    ("Databricks", databricks_status),
-    ("dbt", dbt_status),
-]:
-
-    if stage_status.upper() in STAGE_UNKNOWN:
-
-        messages.append(
-            f"{stage_name} status unknown"
-        )
-
+# ---------------------------------------------------------------------------
+# Final error message
+# ---------------------------------------------------------------------------
 
 error_message = (
     " | ".join(messages)
@@ -387,11 +494,13 @@ error_message = (
 
 
 # ---------------------------------------------------------------------------
-# SQL string helper
+# SQL helper
 # ---------------------------------------------------------------------------
 
 def sql_string(value):
+
     if value is None:
+
         return "NULL"
 
     escaped = str(value).replace(
@@ -403,39 +512,66 @@ def sql_string(value):
 
 
 # ---------------------------------------------------------------------------
-# Update existing audit row OR insert a new one
+# Merge monitoring audit row
+#
+# This also makes monitoring_summary idempotent.
 # ---------------------------------------------------------------------------
 
-if existing:
-
-    spark.sql(
-        f"""
-        UPDATE voyage.monitoring.pipeline_run_audit
-
-        SET
-            ended_at = current_timestamp(),
-            status = {sql_string(overall_status)},
-            airbyte_status = {sql_string(airbyte_status)},
-            databricks_status = {sql_string(databricks_status)},
-            dbt_status = {sql_string(dbt_status)},
-            dq_status = {sql_string(dq_status)},
-            freshness_status = {sql_string(freshness_status)},
-            error_message = {sql_string(error_message)}
-
-        WHERE run_id = {sql_string(pipeline_run_id)}
-        """
-    )
-
-    print(
-        "\nUpdated existing pipeline_run_audit row."
-    )
-
-else:
-
-    spark.sql(
-        f"""
-        INSERT INTO voyage.monitoring.pipeline_run_audit
+summary_df = spark.createDataFrame(
+    [
         (
+            pipeline_run_id,
+            "voyage_daily_pipeline",
+            overall_status,
+            str(airbyte_status),
+            databricks_status,
+            dbt_status,
+            dq_status,
+            freshness_status,
+            error_message,
+        )
+    ],
+    [
+        "run_id",
+        "pipeline_name",
+        "status",
+        "airbyte_status",
+        "databricks_status",
+        "dbt_status",
+        "dq_status",
+        "freshness_status",
+        "error_message",
+    ],
+)
+
+summary_df.createOrReplaceTempView(
+    "monitoring_summary_current"
+)
+
+
+spark.sql(
+    """
+    MERGE INTO voyage.monitoring.pipeline_run_audit AS target
+
+    USING monitoring_summary_current AS source
+
+    ON target.run_id = source.run_id
+
+    WHEN MATCHED THEN
+
+        UPDATE SET
+            target.ended_at = current_timestamp(),
+            target.status = source.status,
+            target.airbyte_status = source.airbyte_status,
+            target.databricks_status = source.databricks_status,
+            target.dbt_status = source.dbt_status,
+            target.dq_status = source.dq_status,
+            target.freshness_status = source.freshness_status,
+            target.error_message = source.error_message
+
+    WHEN NOT MATCHED THEN
+
+        INSERT (
             run_id,
             pipeline_name,
             started_at,
@@ -450,32 +586,23 @@ else:
             error_message
         )
 
-        VALUES
-        (
-            {sql_string(pipeline_run_id)},
-            'voyage_daily_pipeline',
+        VALUES (
+            source.run_id,
+            source.pipeline_name,
             current_timestamp(),
             current_timestamp(),
-            {sql_string(overall_status)},
-            {sql_string(airbyte_status)},
-            {sql_string(databricks_status)},
-            {sql_string(dbt_status)},
-            {sql_string(dq_status)},
-            {sql_string(freshness_status)},
+            source.status,
+            source.airbyte_status,
+            source.databricks_status,
+            source.dbt_status,
+            source.dq_status,
+            source.freshness_status,
             NULL,
-            {sql_string(error_message)}
+            source.error_message
         )
-        """
-    )
+    """
+)
 
-    print(
-        "\nInserted new pipeline_run_audit row."
-    )
-
-
-# ===========================================================================
-# Print summary
-# ===========================================================================
 
 print(
     "\n"

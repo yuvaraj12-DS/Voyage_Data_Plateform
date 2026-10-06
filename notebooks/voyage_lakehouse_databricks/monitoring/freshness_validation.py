@@ -16,97 +16,6 @@
 
 # COMMAND ----------
 
-# DBTITLE 1,Freshness check logic
-# # Freshness Validation — checks _airbyte_extracted_at per bronze table
-# # Writes results to voyage.monitoring.freshness_results
-# # Fails (raises exception) if any dataset has ERROR status
-#
-# from datetime import datetime
-#
-# # --- Pipeline run ID (from widget or auto-generated) ---
-# try:
-#     pipeline_run_id = dbutils.widgets.get("pipeline_run_id")
-# except Exception:
-#     pipeline_run_id = f"manual_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-#
-# print(f"Pipeline run ID: {pipeline_run_id}")
-#
-# # --- Datasets to check ---
-# DATASETS = [
-#     ("bookings",                      "voyage.bronze.bookings"),
-#     ("customers",                      "voyage.bronze.customers"),
-#     ("marketing_bookings",            "voyage.bronze.marketing_bookings"),
-#     ("marketing_campaigns",          "voyage.bronze.marketing_campaigns"),
-#     ("marketing_campaign_performance","voyage.bronze.marketing_campaign_performance"),
-#     ("marketing_ad_groups",           "voyage.bronze.marketing_ad_groups"),
-#     ("marketing_ads",                  "voyage.bronze.marketing_ads"),
-#     ("website_events",                "voyage.bronze.website_events"),
-#     ("website_sessions",              "voyage.bronze.website_sessions"),
-#     ("website_page_views",           "voyage.bronze.website_page_views"),
-#     ("properties",                     "voyage.bronze.properties"),
-#     ("tenants",                        "voyage.bronze.tenants"),
-# ]
-#
-# # --- SLA thresholds (minutes) ---
-# PASS_THRESHOLD  = 120   # < 2 hours
-# ERROR_THRESHOLD = 360   # > 6 hours
-#
-# # --- Get current timestamp from Spark (UTC) ---
-# checked_at = spark.sql("SELECT current_timestamp() AS ts").collect()[0]["ts"]
-#
-# results = []
-# has_error = False
-#
-# print(f"\n{'Dataset':<35} {'Max Loaded At':<28} {'Age (min)':<12} {'Status'}")
-# print("-" * 90)
-#
-# for dataset_name, table_name in DATASETS:
-#     max_loaded_at = spark.sql(
-#         f"SELECT max(timestamp_millis(_airbyte_extracted_at)) AS max_loaded_at FROM {table_name}"
-#     ).collect()[0]["max_loaded_at"]
-#
-#     if max_loaded_at is None:
-#         # Table is empty — treat as ERROR
-#         results.append((pipeline_run_id, dataset_name, checked_at, checked_at, 999999, "ERROR"))
-#         has_error = True
-#         print(f"{dataset_name:<35} {'NULL':<28} {'N/A':<12} ERROR")
-#         continue
-#
-#     age_minutes = int((checked_at - max_loaded_at).total_seconds() / 60)
-#
-#     if age_minutes < PASS_THRESHOLD:
-#         status = "PASS"
-#     elif age_minutes < ERROR_THRESHOLD:
-#         status = "WARN"
-#     else:
-#         status = "ERROR"
-#         has_error = True
-#
-#     results.append((pipeline_run_id, dataset_name, max_loaded_at, checked_at, age_minutes, status))
-#     print(f"{dataset_name:<35} {str(max_loaded_at):<28} {age_minutes:<12} {status}")
-#
-# # --- Write results to monitoring table ---
-# freshness_df = spark.createDataFrame(
-#     results,
-#     ["pipeline_run_id", "dataset", "max_loaded_at", "checked_at", "age_minutes", "status"]
-# )
-#
-# freshness_df.write.mode("append").saveAsTable("voyage.monitoring.freshness_results")
-#
-# print(f"\nWrote {len(results)} freshness checks to voyage.monitoring.freshness_results")
-#
-# # --- Fail if any ERROR ---
-# if has_error:
-#     error_datasets = [r[1] for r in results if r[5] == "ERROR"]
-#     raise RuntimeError(
-#         f"Freshness validation FAILED for: {', '.join(error_datasets)}. "
-#         f"Pipeline stopped to prevent downstream processing on stale data."
-#     )
-#
-# print("\nAll freshness checks passed (PASS or WARN). Pipeline may continue.")
-
-# COMMAND ----------
-
 # Freshness Validation
 #
 # Checks freshness of active Bronze source tables using
@@ -117,14 +26,19 @@
 #   2-6 hours       -> WARN
 #   > 6 hours       -> ERROR
 #
-# Historical/reference/metadata datasets are recorded as N/A
-# because they are not expected to receive new records continuously.
+# Historical/reference/metadata datasets are recorded as N/A.
 #
-# Results are written to:
+# Results are written idempotently to:
 #   voyage.monitoring.freshness_results
 #
-# If any ACTIVE dataset returns ERROR, this notebook raises
-# an exception so the Databricks Job stops before dbt_build.
+# Key:
+#   pipeline_run_id + dataset
+#
+# If the Databricks task retries, the existing row is UPDATED
+# instead of another duplicate row being INSERTED.
+#
+# If any actively monitored dataset has ERROR, the notebook
+# raises an exception so downstream dbt processing stops.
 
 
 from datetime import datetime
@@ -147,28 +61,28 @@ print(f"Pipeline run ID: {pipeline_run_id}")
 # ---------------------------------------------------------------------------
 # Dataset freshness policy
 #
-# True  = actively expected to receive new/updated records
-# False = historical/reference/metadata; freshness is N/A
+# True  = actively expected to receive new/updated data
+# False = historical/reference/metadata
 # ---------------------------------------------------------------------------
 
 DATASETS = [
     # Historical / reference / metadata
-    ("bookings",                       "voyage.bronze.bookings",                       False),
-    ("customers",                      "voyage.bronze.customers",                      False),
-    ("properties",                     "voyage.bronze.properties",                     False),
-    ("tenants",                        "voyage.bronze.tenants",                        False),
+    ("bookings",                        "voyage.bronze.bookings",                        False),
+    ("customers",                       "voyage.bronze.customers",                       False),
+    ("properties",                      "voyage.bronze.properties",                      False),
+    ("tenants",                         "voyage.bronze.tenants",                         False),
 
-    ("marketing_campaigns",            "voyage.bronze.marketing_campaigns",            False),
-    ("marketing_ad_groups",            "voyage.bronze.marketing_ad_groups",            False),
-    ("marketing_ads",                  "voyage.bronze.marketing_ads",                  False),
+    ("marketing_campaigns",             "voyage.bronze.marketing_campaigns",             False),
+    ("marketing_ad_groups",             "voyage.bronze.marketing_ad_groups",             False),
+    ("marketing_ads",                   "voyage.bronze.marketing_ads",                   False),
 
     # Active / strict freshness monitoring
-    ("marketing_bookings",             "voyage.bronze.marketing_bookings",             True),
-    ("marketing_campaign_performance", "voyage.bronze.marketing_campaign_performance", True),
+    ("marketing_bookings",              "voyage.bronze.marketing_bookings",              True),
+    ("marketing_campaign_performance",  "voyage.bronze.marketing_campaign_performance",  True),
 
-    ("website_events",                 "voyage.bronze.website_events",                 True),
-    ("website_sessions",               "voyage.bronze.website_sessions",               True),
-    ("website_page_views",             "voyage.bronze.website_page_views",             True),
+    ("website_events",                  "voyage.bronze.website_events",                  True),
+    ("website_sessions",                "voyage.bronze.website_sessions",                True),
+    ("website_page_views",              "voyage.bronze.website_page_views",              True),
 ]
 
 
@@ -181,7 +95,7 @@ ERROR_THRESHOLD = 360    # > 6 hours
 
 
 # ---------------------------------------------------------------------------
-# Current UTC timestamp
+# Current timestamp
 # ---------------------------------------------------------------------------
 
 checked_at = (
@@ -192,12 +106,11 @@ checked_at = (
 
 
 # ---------------------------------------------------------------------------
-# Results
+# Collect results
 # ---------------------------------------------------------------------------
 
 results = []
 has_error = False
-
 
 print(
     f"\n{'Dataset':<35} "
@@ -228,7 +141,7 @@ for dataset_name, table_name, freshness_required in DATASETS:
         ).collect()[0]["max_loaded_at"]
 
     except Exception as exc:
-        # A technical problem reading the table is a real failure.
+
         status = "ERROR"
         age_minutes = None
         has_error = True
@@ -259,7 +172,7 @@ for dataset_name, table_name, freshness_required in DATASETS:
         continue
 
     # -----------------------------------------------------------------------
-    # Historical / reference / metadata dataset
+    # Historical / reference / metadata
     # -----------------------------------------------------------------------
 
     if not freshness_required:
@@ -286,7 +199,7 @@ for dataset_name, table_name, freshness_required in DATASETS:
         continue
 
     # -----------------------------------------------------------------------
-    # Active dataset
+    # Active dataset with strict freshness SLA
     # -----------------------------------------------------------------------
 
     if max_loaded_at is None:
@@ -353,7 +266,7 @@ for dataset_name, table_name, freshness_required in DATASETS:
 
 
 # ---------------------------------------------------------------------------
-# Write monitoring results
+# Create DataFrame
 # ---------------------------------------------------------------------------
 
 freshness_df = spark.createDataFrame(
@@ -368,21 +281,66 @@ freshness_df = spark.createDataFrame(
     ],
 )
 
-freshness_df.write.mode(
-    "append"
-).saveAsTable(
-    "voyage.monitoring.freshness_results"
+
+# ---------------------------------------------------------------------------
+# Idempotent MERGE
+#
+# One row per:
+#   pipeline_run_id + dataset
+#
+# Existing row -> UPDATE
+# New row      -> INSERT
+# ---------------------------------------------------------------------------
+
+freshness_df.createOrReplaceTempView(
+    "freshness_results_current"
+)
+
+spark.sql(
+    """
+    MERGE INTO voyage.monitoring.freshness_results AS target
+
+    USING freshness_results_current AS source
+
+    ON target.pipeline_run_id = source.pipeline_run_id
+       AND target.dataset = source.dataset
+
+    WHEN MATCHED THEN
+        UPDATE SET
+            target.max_loaded_at = source.max_loaded_at,
+            target.checked_at = source.checked_at,
+            target.age_minutes = source.age_minutes,
+            target.status = source.status
+
+    WHEN NOT MATCHED THEN
+        INSERT (
+            pipeline_run_id,
+            dataset,
+            max_loaded_at,
+            checked_at,
+            age_minutes,
+            status
+        )
+        VALUES (
+            source.pipeline_run_id,
+            source.dataset,
+            source.max_loaded_at,
+            source.checked_at,
+            source.age_minutes,
+            source.status
+        )
+    """
 )
 
 
 print(
-    f"\nWrote {len(results)} freshness checks "
-    f"to voyage.monitoring.freshness_results"
+    f"\nUpserted {len(results)} freshness checks "
+    "into voyage.monitoring.freshness_results"
 )
 
 
 # ---------------------------------------------------------------------------
-# Fail pipeline only for active datasets with ERROR
+# Fail pipeline if an actively monitored dataset is ERROR
 # ---------------------------------------------------------------------------
 
 if has_error:
@@ -402,6 +360,6 @@ if has_error:
 
 
 print(
-    "\nFreshness validation completed. "
+    "\nFreshness validation completed successfully. "
     "No active dataset is in ERROR status."
 )
