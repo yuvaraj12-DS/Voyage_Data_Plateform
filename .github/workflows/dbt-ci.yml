@@ -67,8 +67,8 @@ jobs:
 
       - name: Validate dbt project syntax
         env:
-          YOUR_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
-          YOUR_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
+          MY_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
+          MY_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
           DBT_ACCESS_TOKEN: ${{ secrets.DBT_ACCESS_TOKEN }}
         run: |
           dbt debug \
@@ -78,8 +78,8 @@ jobs:
 
       - name: Compile dbt project
         env:
-          YOUR_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
-          YOUR_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
+          MY_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
+          MY_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
           DBT_ACCESS_TOKEN: ${{ secrets.DBT_ACCESS_TOKEN }}
         run: |
           dbt compile \
@@ -95,8 +95,8 @@ jobs:
       - name: Build dbt models and run tests
         if: github.event_name != 'pull_request'
         env:
-          YOUR_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
-          YOUR_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
+          MY_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
+          MY_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
           DBT_ACCESS_TOKEN: ${{ secrets.DBT_ACCESS_TOKEN }}
         run: |
           dbt build \
