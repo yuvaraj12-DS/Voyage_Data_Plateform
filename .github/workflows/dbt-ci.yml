@@ -1,0 +1,105 @@
+name: dbt CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  dbt-validation:
+    name: Validate dbt project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dbt-ci.txt
+
+      - name: Install dbt dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dbt-ci.txt
+
+      - name: Verify dbt installation
+        run: |
+          dbt --version
+
+      - name: Create CI dbt profile
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/dbt-profile"
+
+          cat > "$RUNNER_TEMP/dbt-profile/profiles.yml" <<'EOF'
+          voyage_data_platform:
+            target: ci
+
+            outputs:
+              ci:
+                type: databricks
+                method: http
+
+                catalog: voyage
+                schema: dbt_ci
+
+                host: "{{ env_var('MY_DATABRICKS_WORKSPACE_HOST') }}"
+                http_path: "{{ env_var('MY_SQL_WAREHOUSE_HTTP_PATH') }}"
+
+                token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+
+                threads: 2
+          EOF
+
+      - name: Validate dbt project syntax
+        env:
+          YOUR_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
+          YOUR_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
+          DBT_ACCESS_TOKEN: ${{ secrets.DBT_ACCESS_TOKEN }}
+        run: |
+          dbt debug \
+            --project-dir dbt \
+            --profiles-dir "$RUNNER_TEMP/dbt-profile" \
+            --target ci
+
+      - name: Compile dbt project
+        env:
+          YOUR_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
+          YOUR_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
+          DBT_ACCESS_TOKEN: ${{ secrets.DBT_ACCESS_TOKEN }}
+        run: |
+          dbt compile \
+            --project-dir dbt \
+            --profiles-dir "$RUNNER_TEMP/dbt-profile" \
+            --target ci
+
+      - name: Check Python syntax
+        shell: bash
+        run: |
+          python -m py_compile orchestration/airflow/dags/voyage_daily_pipeline.py
+
+      - name: Build dbt models and run tests
+        if: github.event_name != 'pull_request'
+        env:
+          YOUR_DATABRICKS_WORKSPACE_HOST: ${{ secrets.MY_DATABRICKS_WORKSPACE_HOST }}
+          YOUR_SQL_WAREHOUSE_HTTP_PATH: ${{ secrets.MY_SQL_WAREHOUSE_HTTP_PATH }}
+          DBT_ACCESS_TOKEN: ${{ secrets.DBT_ACCESS_TOKEN }}
+        run: |
+          dbt build \
+            --project-dir dbt \
+            --profiles-dir "$RUNNER_TEMP/dbt-profile" \
+            --target ci
