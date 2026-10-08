@@ -14,7 +14,7 @@ env/
 # Environment variables
 .env
 .env.*
-
+.venv-ai*
 # Local data
 data/raw/
 data/processed/

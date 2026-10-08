@@ -10,8 +10,8 @@ voyage_data_platform:
       catalog: voyage
       schema: dbt_dev
 
-      host: {{ env_var('YOUR_DATABRICKS_WORKSPACE_HOST') }}
-      http_path: {{ env_var('YOUR_SQL_WAREHOUSE_HTTP_PATH') }}
+      host: {{ env_var('My_DATABRICKS_WORKSPACE_HOST') }}
+      http_path: {{ env_var('My_SQL_WAREHOUSE_HTTP_PATH') }}
 
       token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
 
