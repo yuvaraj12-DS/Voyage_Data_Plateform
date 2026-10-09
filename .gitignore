@@ -8,13 +8,15 @@ __pycache__/
 venv/
 env/
 .venv-dbt/
+.venv-ai*
 # Jupyter
 .ipynb_checkpoints/
 
 # Environment variables
 .env
 .env.*
-.venv-ai*
+.env_ai*
+
 # Local data
 data/raw/
 data/processed/

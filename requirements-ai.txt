@@ -1,0 +1,6 @@
+streamlit
+ollama
+databricks-sql-connector
+python-dotenv
+pydantic>=2,<3
+pandas
