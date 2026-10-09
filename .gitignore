@@ -34,3 +34,8 @@ dbt/target/
 
 # Airflow---
 orchestration/airflow/.env.airflow
+
+# Add these lines to the repository's existing .gitignore if they are not already present
+ai_assistant/__pycache__/
+__pycache__/
+*.py[cod]

@@ -68,3 +68,20 @@ def validate_runtime_config(require_llm: bool = True) -> None:
         missing.append("OLLAMA_MODEL")
     if missing:
         raise RuntimeError("Missing required environment setting(s): " + ", ".join(missing))
+
+def read_setting(name: str, default: str = "") -> str:
+    value = os.getenv(name)
+
+    if value is not None and value.strip():
+        return value.strip()
+
+    try:
+        import streamlit as st
+
+        value = st.secrets.get(name, default)
+        if value is not None:
+            return str(value).strip()
+    except Exception:
+        pass
+
+    return default
