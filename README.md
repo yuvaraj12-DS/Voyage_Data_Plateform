@@ -629,3 +629,52 @@ I validated the local AI app and grounding tests after the attribution query cor
 ## Project ownership and status note
 
 I completed the VoyageData project and validated the platform end to end. This README reflects the final implemented state of the project, the design decisions I made, and the evidence I captured during validation. It represents the completed portfolio project as I intended it to be documented after finishing the work.
+
+---
+
+## About Me
+
+### Hi there, I'm Yuvaraj Singh
+
+I am a freelance **Data Engineer, Data Scientist, BI Developer, and Statistician** with over **5 years of professional experience** working on data engineering, statistical analysis, machine learning, deep learning (CNN, RNN & Transformers architecture) and business intelligence projects.
+
+I enjoy building end-to-end data solutions that transform raw data into reliable, actionable insights. My work spans data ingestion, ETL/ELT pipelines, lakehouse architecture, analytical data modeling, dashboard development, and AI-powered analytics.
+
+Through **VoyageData — Travel Data Platform**, I brought these skills together to build an end-to-end project integrating PostgreSQL, FastAPI, Airbyte, AWS S3, Databricks, dbt, Apache Airflow, Power BI, and a conversational AI analyst built with Streamlit and Ollama Cloud.
+
+**Freelance Profile:** [Upwork — Yuvaraj Singh](https://www.upwork.com/freelancers/~017d638f11f360bc8e?mp_source=share)
+
+### What I Do
+
+- **Data Engineering & ETL/ELT:** Building data ingestion pipelines, API integrations, incremental synchronization, data transformations, and reliable analytical workflows.
+- **Cloud Lakehouse & Analytics Engineering:** Working with AWS S3, Databricks, Delta Lake, and dbt to organize data into Bronze, Silver, and analytical layers with validation and testing.
+- **Workflow Orchestration & Data Quality:** Using Apache Airflow to coordinate pipeline execution, retries, monitoring, freshness checks, and data-quality validation.
+- **Business Intelligence & Visualization:** Developing Power BI dashboards, DAX measures, data models, and business KPIs that help translate complex datasets into understandable insights.
+- **AI-Powered Analytics:** Integrating language models with approved data tools so users can ask business questions in natural language and receive answers grounded in analytical data.
+- **Statistical Analysis & Machine Learning:** Applying exploratory data analysis, hypothesis testing, regression, forecasting, classification, and predictive modeling to practical problems.
+
+### Tools & Technologies
+
+- **Data Engineering:** Python, SQL, PostgreSQL, FastAPI, Airbyte, Apache Airflow, AWS S3, Docker
+- **Lakehouse & Analytics Engineering:** Databricks, Apache Spark, Delta Lake, dbt
+- **Business Intelligence:** Power BI, DAX, Power Query, Microsoft Excel
+- **AI & Machine Learning:** PyTorch, Ollama, Streamlit, pandas, NumPy, scikit-learn
+- **Statistical Computing:** R, RStudio, SAS, SPSS
+- **Development & Version Control:** Git, GitHub, VS Code, Jupyter
+
+### Featured Project: VoyageData
+
+VoyageData demonstrates how I approach a complete data platform, from ingestion and transformation to business intelligence and conversational analytics.
+
+The platform combines historical hotel booking data from 2014–2017 with separate synthetic 2026 marketing, website, and conversion data. It includes incremental ingestion, multi-domain analytical models, marketing attribution, automated orchestration, data-quality monitoring, Power BI dashboards, GitHub Actions CI, and an AI analyst that queries approved dbt analytical marts.
+
+The project reflects my interest in building **reproducible, well-tested, and explainable data solutions**, with a clear separation between data engineering, analytics, visualization, and AI.
+
+---
+
+## Let's Connect
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yuvaraj-singh-774226350/)
+[![Upwork](https://img.shields.io/badge/Upwork-6fda44?style=flat-square&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~017d638f11f360bc8e?mp_source=share)
+
+GitHub: [yuvaraj12-DS](https://github.com/yuvaraj12-DS)
