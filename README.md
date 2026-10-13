@@ -384,7 +384,8 @@ voyage.monitoring  freshness, DQ, and audit history
 
 The dbt project lived in `dbt/` and used the profile name `voyage_data_platform`. The profile configuration relied on environment variables for the workspace host, SQL warehouse HTTP path, and token. I worked through the profile naming and directory structure carefully to ensure dbt commands resolved correctly.
 
-![Lineage graphs 1](docs\architecture\Lineage_graph_fct_marketing_funnel_daily.png)
+![Lineage graphs](docs\architecture\Lineage_graph_fct_marketing_funnel_daily.png)
+
 I validated the project using the pinned versions available at the time: dbt Core 1.12.3, dbt-databricks 1.12.5, and dbt-spark 1.10.3. I kept CI pinned to these versions instead of upgrading them during unrelated work.
 
 Useful commands once the profile directory was configured correctly:
@@ -465,7 +466,9 @@ I reviewed the workflow triggers and conditions before documenting which events 
 The PBIX/report was stored under `power_bi/` in the repository. The report pages I implemented included:
 
 - Executive Overview
-  ![VoyageData Executive Dashboard](power_bi\Executive_Overview.png)
+
+![VoyageData Executive Dashboard](power_bi\Executive_Overview.png)
+  
 - Marketing Performance
 - Marketing Funnel
 - Attribution
