@@ -2,26 +2,26 @@
 
 ## Objective
 
-Extend the VoyageData platform with a synthetic travel marketing domain that supports campaign-level advertising performance analysis across multiple tenants and channels.
+This phase extends the VoyageData platform with a synthetic travel marketing domain designed to support campaign-level advertising performance analysis across multiple tenants and channels.
 
-The domain was designed to simulate Google Ads and Meta Ads style data without depending on a real advertising account.
+The domain simulates Google Ads and Meta Ads style data without depending on a real advertising account.
 
 ## Data Model
 
 The marketing domain contains four operational entities:
 
-- Campaigns
-- Ad Groups
-- Ads
-- Campaign Daily Metrics
+- campaigns
+- ad groups
+- ads
+- campaign daily metrics
 
 The hierarchy is:
 
 Tenant → Campaign → Ad Group → Ad
 
-Campaign Daily Metrics stores daily campaign-level performance.
+Campaign daily metrics store daily campaign-level performance.
 
-Every marketing business table contains `tenant_id` to maintain the multi-tenant design.
+Every marketing business table contains `tenant_id` to preserve the multi-tenant design.
 
 ## Synthetic Data
 
@@ -37,7 +37,7 @@ The synthetic performance period is:
 
 `2026-04-01` through `2026-09-30`
 
-The campaign performance data follows basic business constraints:
+The campaign performance data follows a small set of business constraints:
 
 - clicks cannot exceed impressions
 - conversions cannot exceed clicks
@@ -74,7 +74,7 @@ Silver models:
 - `voyage.silver.dim_ad`
 - `voyage.silver.fact_campaign_daily`
 
-Silver retains the latest record for each business key using `updated_at` and Airbyte extraction time.
+Silver retains the latest record for each business key using `updated_at` and the Airbyte extraction timestamp.
 
 Referential integrity checks between the marketing entities returned zero orphan records.
 
@@ -97,7 +97,7 @@ This model joins campaign performance with campaign attributes and calculates:
 
 - CTR
 - CPC
-- Conversion Rate
+- conversion rate
 - ROAS
 
 ### Final Mart
@@ -129,7 +129,7 @@ Columns include:
 - roas
 - updated_at
 
-Ad group and ad staging models are intentionally not joined into the campaign-day fact because the current performance source is at campaign-day grain and does not contain ad-group or ad-level metric identifiers. Keeping those dimensions separate avoids metric duplication caused by a fan-out join.
+Ad group and ad staging models are intentionally not joined into the campaign-day fact because the current performance source is at campaign-day grain and does not contain ad-group or ad-level metric identifiers. Keeping those dimensions separate avoids metric duplication from a fan-out join.
 
 ## Validation
 
@@ -141,7 +141,7 @@ Final marketing validation confirmed:
 - 2 tenants
 - campaign period from 2026-04-01 to 2026-09-30
 - no invalid metric values
-- no unexpected nulls in required analytical fields
+- no unexpected null values in required analytical fields
 - Silver-to-mart reconciliation passed
 
 The final mart totals reconcile exactly with the Databricks Silver campaign performance fact for:
@@ -154,4 +154,4 @@ The final mart totals reconcile exactly with the Databricks Silver campaign perf
 
 ## Result
 
-The marketing domain now provides a complete pipeline from source API through Airbyte, S3, Databricks Bronze/Silver, dbt transformations, and the final campaign-day analytical mart.
+The marketing domain now provides a complete pipeline from the source API through Airbyte, S3, Databricks Bronze and Silver, dbt transformation, and the final campaign-day analytical mart.

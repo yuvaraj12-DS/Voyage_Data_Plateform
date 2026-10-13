@@ -2,8 +2,7 @@
 
 ## Objective
 
-Operationalize the VoyageData platform by introducing Apache Airflow as
-the external workflow orchestrator.
+This phase operationalizes the VoyageData platform by introducing Apache Airflow as the external workflow orchestrator. The goal was to move from isolated ingestion and transformation steps into a managed, repeatable pipeline with scheduling, dependency handling, and failure control.
 
 ## Architecture
 
@@ -14,6 +13,8 @@ Airflow
 → Databricks Silver
 → dbt Gold
 → Validation
+
+This flow represents the orchestration layer that coordinates the end-to-end movement of source data through raw storage, lakehouse processing, and final analytical models.
 
 ## Responsibilities
 
@@ -48,16 +49,13 @@ Airflow
 
 The demonstration pipeline runs daily.
 
-Automatic historical catchup is disabled because Airbyte incremental state
-should not be automatically rewound according to Airflow logical dates.
+Automatic historical catchup is intentionally disabled because Airbyte incremental state should not be automatically rewound based on Airflow logical dates.
 
 ## Failure Handling
 
-Airflow stops downstream processing when the Airbyte sync fails.
+Airflow stops downstream processing when an Airbyte sync fails.
 
-Databricks processing only begins after successful ingestion.
-
-dbt build includes model execution and data tests.
+Databricks processing begins only after successful ingestion, and the dbt build includes model execution and data tests.
 
 ## Incremental Behavior
 
@@ -72,10 +70,8 @@ source update
 
 ## Idempotency
 
-Silver models deduplicate business keys using the latest source update and
-Airbyte extraction timestamp.
+Silver models deduplicate business keys using the latest source update and the Airbyte extraction timestamp.
 
 ## Backfills
 
-Historical reprocessing is a deliberate operational action using an Airbyte
-reset/full refresh followed by Bronze, Silver and dbt processing.
+Historical reprocessing is a deliberate operational action that uses an Airbyte reset/full refresh followed by Bronze, Silver, and dbt processing.

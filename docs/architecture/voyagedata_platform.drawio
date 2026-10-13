@@ -1,0 +1,179 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36">
+  <diagram name="Page-1" id="5ODE6Ey_yJNmbejVGJqJ">
+    <mxGraphModel dx="1734" dy="1062" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-22" edge="1" parent="1" source="uw39HjQ0lzsmIFFIxSEJ-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="uw39HjQ0lzsmIFFIxSEJ-21" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-23" connectable="0" parent="uw39HjQ0lzsmIFFIxSEJ-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="incremental updated_at" vertex="1">
+          <mxGeometry relative="1" x="0.0889" y="-1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#ffe6cc, #ededed);" value="&lt;span style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot; data-sfc-cp=&quot;&quot; class=&quot;rQesXe MPyX&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Airbyte Core&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;&lt;font&gt;API source connectors&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Full + incremental sync&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Primary keys / cursor state&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Retry and job status&lt;/font&gt;" vertex="1">
+          <mxGeometry height="115" width="210" x="230" y="282.5" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-18" edge="1" parent="1" source="uw39HjQ0lzsmIFFIxSEJ-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="uw39HjQ0lzsmIFFIxSEJ-1">
+          <mxGeometry relative="1" x="0.1477" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-19" connectable="0" parent="uw39HjQ0lzsmIFFIxSEJ-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="paged API" vertex="1">
+          <mxGeometry relative="1" x="0.16" y="-2" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#d2e5ff, #ededed);" value="&lt;span style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot; data-sfc-cp=&quot;&quot; class=&quot;rQesXe MPyX&quot;&gt;PostgreSQL + FastAPI&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Operational-style source tables&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Pagination and tenant filters&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;updated_after / updated_at&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;API-key protected endpoints" vertex="1">
+          <mxGeometry height="115" width="210" x="-110" y="282.5" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-6" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;VoyageData — Travel Marketing Data Platform&lt;/font&gt;&lt;/b&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Multi-tenant | Historical hotel operations + synthetic 2026 marketing journey | dbt-trusted analytics&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="630" x="600" y="-7" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-14" edge="1" parent="1" source="uw39HjQ0lzsmIFFIxSEJ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uw39HjQ0lzsmIFFIxSEJ-5">
+          <mxGeometry relative="1" x="-0.0008" as="geometry">
+            <Array as="points">
+              <mxPoint x="-110" y="135" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-15" edge="1" parent="1" source="uw39HjQ0lzsmIFFIxSEJ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uw39HjQ0lzsmIFFIxSEJ-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="295" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-17" edge="1" parent="1" source="uw39HjQ0lzsmIFFIxSEJ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="uw39HjQ0lzsmIFFIxSEJ-5">
+          <mxGeometry relative="1" x="0.4459" as="geometry">
+            <Array as="points">
+              <mxPoint x="-110" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-21" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;span style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot; data-sfc-cp=&quot;&quot; class=&quot;rQesXe MPyX&quot;&gt;&lt;font&gt;Amazon S3 — Raw Landing&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;raw/airbyte/voyage_raw/&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;JSONL/GZIP snapshots&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Versioned raw objects&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Dedicated IAM identity&lt;/font&gt;" vertex="1">
+          <mxGeometry height="210" width="120" x="600" y="232.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-2" edge="1" parent="1" source="uw39HjQ0lzsmIFFIxSEJ-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="zodN_0sLg4L3BbKcOTxG-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-24" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;span style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot; data-sfc-cp=&quot;&quot; class=&quot;rQesXe MPyX&quot;&gt;&lt;font&gt;Databricks Bronze&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Raw source tables&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Airbyte metadata retained&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Multiple source versions possible&lt;/font&gt;" vertex="1">
+          <mxGeometry height="205" width="120" x="840" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-25" edge="1" parent="1" source="uw39HjQ0lzsmIFFIxSEJ-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="uw39HjQ0lzsmIFFIxSEJ-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-26" connectable="0" parent="uw39HjQ0lzsmIFFIxSEJ-25" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="JSONL/GZIP" vertex="1">
+          <mxGeometry relative="1" x="0.0167" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-33" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;font&gt;&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;voyage.monitoring&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;freshness results&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;data-quality results&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;pipeline run audit&lt;/font&gt;" vertex="1">
+          <mxGeometry height="167.5" width="110" x="1360" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-4" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="zodN_0sLg4L3BbKcOTxG-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Databricks Silver&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Cleaned/typed tables&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Latest-record deduplication&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Relationships/orphan checks&lt;/font&gt;" vertex="1">
+          <mxGeometry height="192.5" width="230" x="1050" y="241.25" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-6" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="uw39HjQ0lzsmIFFIxSEJ-33" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-9" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="zodN_0sLg4L3BbKcOTxG-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-10" connectable="0" parent="zodN_0sLg4L3BbKcOTxG-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="trusted analytical marts" vertex="1">
+          <mxGeometry relative="1" x="0.0271" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-11" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="zodN_0sLg4L3BbKcOTxG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-12" connectable="0" parent="zodN_0sLg4L3BbKcOTxG-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="trusted analytical marts" vertex="1">
+          <mxGeometry relative="1" x="-0.0132" y="-4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;font&gt;&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;dbt Analytical Layer&lt;/span&gt;&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;&amp;nbsp;&lt;em class=&quot;zhvwWe&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;voyage.dbt_dev&lt;/em&gt;&amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;&lt;em class=&quot;zhvwWe&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Staging → intermediate → marts&lt;/em&gt;&amp;nbsp;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;T&lt;em class=&quot;zhvwWe&quot; aria-owns=&quot;action-menu-parent-container&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;ests and documented metric logic&lt;/em&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="192.5" width="230" x="1365" y="241.25" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font&gt;VoyageData AI Analyst&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Streamlit conversation UI | Ollama Cloud model&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;User → Agent Router → Approved Python Tools&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Parameterized SELECT over dbt marts → Grounded answer&lt;/font&gt;" vertex="1">
+          <mxGeometry height="158.75" width="280" x="1755" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font&gt;Power BI&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Executive Overview&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Marketing Performance/Funnel&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Attribution&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Historical Bookings | Property/Tenan&lt;/font&gt;t" vertex="1">
+          <mxGeometry height="158.75" width="280" x="1760" y="41.25" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-18" parent="1" style="swimlane;startSize=23;verticalAlign=top;dashed=1;" value="Orchestration, monitoring and delivery control" vertex="1">
+          <mxGeometry height="115" width="1620" x="20" y="720" as="geometry">
+            <mxRectangle height="30" width="280" x="-320" y="730" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-19" parent="zodN_0sLg4L3BbKcOTxG-18" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=light-dark(#f5f5f5, #ededed);" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Apache Airflow&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Daily DAG and task ordering" vertex="1">
+          <mxGeometry height="60" width="280" x="60" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-20" parent="zodN_0sLg4L3BbKcOTxG-18" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#f5f5f5, #ededed);" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Audit + logging&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;pipeline_run_audit, task/job status, failure/retry context" vertex="1">
+          <mxGeometry height="60" width="340" x="790" y="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-24" parent="zodN_0sLg4L3BbKcOTxG-18" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;GitHub Actions&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;dbt validation/build and Python syntax checks" vertex="1">
+          <mxGeometry height="65" width="350" x="1190" y="42.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-22" parent="zodN_0sLg4L3BbKcOTxG-18" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#f5f5f5, #ededed);" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Freshness + DQ&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Active freshness policy, 20 checks, reconciliation" vertex="1">
+          <mxGeometry height="62.5" width="310" x="420" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-26" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;" target="uw39HjQ0lzsmIFFIxSEJ-1">
+          <mxGeometry relative="1" x="0.001" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="760" />
+              <mxPoint x="240" y="578.8" />
+              <mxPoint x="335" y="578.8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-27" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;" target="uw39HjQ0lzsmIFFIxSEJ-24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="760" />
+              <mxPoint x="280" y="600" />
+              <mxPoint x="900" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-29" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.907;entryY=0.993;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" x="-0.0098" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="710" />
+              <mxPoint x="1518.6" y="710" />
+            </Array>
+            <mxPoint x="1370" y="762.5" as="sourcePoint" />
+            <mxPoint x="1518.6100000000001" y="432.4024999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zodN_0sLg4L3BbKcOTxG-32" parent="1" style="swimlane;startSize=0;dashed=1;" value="" vertex="1">
+          <mxGeometry height="657" width="340" x="-530" y="53" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-7" parent="zodN_0sLg4L3BbKcOTxG-32" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="&lt;span style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot; data-sfc-cp=&quot;&quot; class=&quot;rQesXe MPyX&quot;&gt;&lt;font&gt;Hotel Booking Demand&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Real historical records: 2014–2017&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Operationalized into bookings/customers/properties&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="270" x="35" y="27" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-8" parent="zodN_0sLg4L3BbKcOTxG-32" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#d2e5ff, #ededed);" value="&lt;span style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot; data-sfc-cp=&quot;&quot; class=&quot;rQesXe MPyX&quot;&gt;&lt;font&gt;Synthetic Marketing Domain&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Campaigns / ad groups / ads&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Campaign-day impressions, clicks, spend, conversions, revenue&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Synthetic activity: 2026&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="270" x="45" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-12" parent="zodN_0sLg4L3BbKcOTxG-32" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=light-dark(#f5f5f5, #ededed);" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Do not join historical 2014–2017 hotel bookings to synthetic 2026 marketing sessions.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="47" width="320" x="10" y="597" as="geometry" />
+        </mxCell>
+        <mxCell id="uw39HjQ0lzsmIFFIxSEJ-10" parent="zodN_0sLg4L3BbKcOTxG-32" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#d2e5ff, #ededed);" value="&lt;span style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot; data-sfc-cp=&quot;&quot; class=&quot;rQesXe MPyX&quot;&gt;&lt;font&gt;Synthetic Website + Conversion Bridge&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Sessions / page views / events&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Search → property view&amp;nbsp; booking start → purchase&lt;br style=&quot;font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot; data-complete=&quot;true&quot; data-sfc-pl=&quot;|||[]&quot; data-epip=&quot;&quot; data-sfc-root=&quot;ep&quot;&gt;Purchase → marketing_bookings bridge&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="270" x="35" y="437" as="geometry" />
+        </mxCell>
+        <mxCell id="FWLIV_AWLW2_1v2NpGPR-1" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" target="uw39HjQ0lzsmIFFIxSEJ-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FWLIV_AWLW2_1v2NpGPR-2" edge="1" parent="1" source="zodN_0sLg4L3BbKcOTxG-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.364;entryY=0.991;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;" target="uw39HjQ0lzsmIFFIxSEJ-33">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="595" y="680" />
+              <mxPoint x="1400" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -2,10 +2,11 @@
 
 ## Objective
 
-Harden the VoyageData platform with monitoring, data-quality validation,
-freshness checks, structured Airflow logging, failure handling and CI/CD.
+This phase focused on hardening the VoyageData platform with monitoring, data-quality validation, freshness checks, structured Airflow logging, failure handling, and CI/CD automation.
 
 ## Monitoring
+
+The monitoring layer tracks:
 
 - Airbyte synchronization status
 - Bronze data freshness
@@ -16,7 +17,7 @@ freshness checks, structured Airflow logging, failure handling and CI/CD.
 
 ## Freshness policy
 
-Strict freshness:
+Strict freshness is enforced for:
 
 - marketing_bookings
 - marketing_campaign_performance
@@ -24,7 +25,7 @@ Strict freshness:
 - website_sessions
 - website_page_views
 
-Reference datasets:
+Reference datasets include:
 
 - bookings
 - customers
@@ -34,12 +35,11 @@ Reference datasets:
 - marketing_ad_groups
 - marketing_ads
 
-Reference datasets are reported as N/A because they are not expected to
-change every pipeline run.
+These reference datasets are reported as N/A because they are not expected to change on every pipeline run.
 
 ## Airflow
 
-Daily orchestration:
+Daily orchestration runs in the following order:
 
 Airbyte
 → S3
@@ -77,12 +77,11 @@ CI uses the isolated `voyage.dbt_ci` schema.
 
 ## Security
 
-Credentials are stored as GitHub repository secrets and are not committed
-to the repository.
+Credentials are stored as GitHub repository secrets and are not committed to the repository.
 
 ## Final status
 
-Phase 11 completed after successful:
+Phase 11 was completed after successful:
 
 - Airflow orchestration
 - freshness validation

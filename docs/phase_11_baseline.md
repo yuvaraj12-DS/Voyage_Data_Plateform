@@ -1,19 +1,19 @@
 ## Airbyte
-- 4 incremental connections
+- four incremental connections
 - S3 destination
-- cursor = updated_at
+- cursor set to `updated_at`
 
 ## Databricks
-- Bronze
-- Silver
+- Bronze layer
+- Silver layer
 - dbt analytical layer
 - validation job
 
 ## Airflow
-- voyage_daily_pipeline
-- serialized Airbyte syncs
-- Databricks Job trigger
-- retries
+- `voyage_daily_pipeline`
+- serialized Airbyte sync sequence
+- Databricks job trigger
+- retry handling
 
 ## dbt
 - models

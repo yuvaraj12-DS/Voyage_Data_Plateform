@@ -1,0 +1,177 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="yZK5SZ1n3-RUnQkQhBjm">
+    <mxGraphModel dx="1334" dy="1062" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="light-dark(#ffffff, #121212)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1PXgb0tgnudciXv17Ax6-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;VoyageData — AI Analyst Trust Boundary &amp;amp; Tool-Calling Flow&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="780" x="40" y="-30" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-3" parent="1" style="shape=mermaidPerson;perimeter=mermaidPersonPerimeter;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Business User" vertex="1">
+          <mxGeometry height="100" width="100" x="-10" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-33" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-8">
+          <mxGeometry relative="1" x="-0.0443" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="250" />
+              <mxPoint x="150" y="100" />
+              <mxPoint x="330" y="100" />
+              <mxPoint x="330" y="102.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-34" connectable="0" parent="1PXgb0tgnudciXv17Ax6-33" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="question&amp;nbsp;&lt;div&gt;+ conversation&amp;nbsp;&lt;div&gt;context&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0443" y="-4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font&gt;Streamlit: VoyageData AI Analyst&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;natural-language question&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;optional date/tenant/model filters&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;response and supporting table&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;source mart/filter metadat&lt;/font&gt;a&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;em class=&quot;zhvwWe&quot; aria-owns=&quot;action-menu-parent-container&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Note: Secrets are fully hidden from UI/debug outputs&lt;/font&gt;&lt;/em&gt;" vertex="1">
+          <mxGeometry height="160" width="160" x="-40" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-6" parent="1" style="swimlane;startSize=0;dashed=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;labelBackgroundColor=light-dark(#f5f5f5, #ededed);" value="" vertex="1">
+          <mxGeometry height="720" width="200" x="320" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-15" edge="1" parent="1PXgb0tgnudciXv17Ax6-6" source="1PXgb0tgnudciXv17Ax6-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-8" parent="1PXgb0tgnudciXv17Ax6-6" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent / Intent Router" vertex="1">
+          <mxGeometry height="50" width="160" x="20" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-16" edge="1" parent="1PXgb0tgnudciXv17Ax6-6" source="1PXgb0tgnudciXv17Ax6-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-9" parent="1PXgb0tgnudciXv17Ax6-6" style="rounded=0;whiteSpace=wrap;html=1;" value="Approved Tool Registry" vertex="1">
+          <mxGeometry height="50" width="160" x="20" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-17" edge="1" parent="1PXgb0tgnudciXv17Ax6-6" source="1PXgb0tgnudciXv17Ax6-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-10" parent="1PXgb0tgnudciXv17Ax6-6" style="rounded=0;whiteSpace=wrap;html=1;" value="Argument Schema Validation" vertex="1">
+          <mxGeometry height="50" width="160" x="20" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-18" edge="1" parent="1PXgb0tgnudciXv17Ax6-6" source="1PXgb0tgnudciXv17Ax6-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-11" parent="1PXgb0tgnudciXv17Ax6-6" style="rounded=0;whiteSpace=wrap;html=1;" value="Business Tool (Python Function)" vertex="1">
+          <mxGeometry height="50" width="160" x="20" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-19" edge="1" parent="1PXgb0tgnudciXv17Ax6-6" source="1PXgb0tgnudciXv17Ax6-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-12" parent="1PXgb0tgnudciXv17Ax6-6" style="rounded=0;whiteSpace=wrap;html=1;" value="Query Allow-list + Parameter Binding" vertex="1">
+          <mxGeometry height="50" width="160" x="20" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-48" edge="1" parent="1PXgb0tgnudciXv17Ax6-6" source="1PXgb0tgnudciXv17Ax6-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-50" y="465" />
+              <mxPoint x="-50" y="47.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-50" connectable="0" parent="1PXgb0tgnudciXv17Ax6-48" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="data rows&amp;nbsp;&lt;div&gt;+ verified source&amp;nbsp;&lt;/div&gt;&lt;div&gt;+ filter metadata&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.2428" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-13" parent="1PXgb0tgnudciXv17Ax6-6" style="rounded=0;whiteSpace=wrap;html=1;" value="Result Validation / Provenance Metadata" vertex="1">
+          <mxGeometry height="50" width="160" x="20" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-20" parent="1PXgb0tgnudciXv17Ax6-6" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;fillColor=none;strokeColor=light-dark(#f10404, #ededed);" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font&gt;REJECTED / FORBIDDEN EXECUTION PATHS&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Arbitrary raw SQL generated directly by the LLM&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Destructive actions: INSERT, UPDATE, DELETE, DROP&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Interacting with unknown or unverified database table names&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Unvalidated dates, limits, or tenant IDs&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Injecting or exposing secret API keys/tokens in prompts or logs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="200" width="170" x="15" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Application Trust Boundary (App-Controlled Backend Runtime)" vertex="1">
+          <mxGeometry height="30" width="200" x="320" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-44" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=light-dark(#ffe6cc, #ededed);" value="Secrets Store / Streamlit Secrets Box (Databricks Token Vaulted)" vertex="1">
+          <mxGeometry height="60" width="120" x="190" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-42" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=-0.006;exitY=0.417;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-43" connectable="0" parent="1PXgb0tgnudciXv17Ax6-42" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="selected tool name + JSON arguments" vertex="1">
+          <mxGeometry relative="1" x="0.039" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Ollama Cloud (Inference Service)&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Handles language understanding&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Evaluates tool selection and text response wording&lt;/font&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;em class=&quot;zhvwWe&quot; aria-owns=&quot;action-menu-parent-container&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Crucial: Model is NOT the source of numerical data truth&lt;/em&gt;" vertex="1">
+          <mxGeometry height="115" width="160" x="760" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-47" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=112.5;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="362.5" />
+              <mxPoint x="720" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-24" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font&gt;Databricks SQL Warehouse&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Catalog: voyage&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Schema: dbt_dev&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Enforces approved SELECT-only privileges&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;Accesses trusted dbt facts/dimensions only&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="110" x="785" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-31" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="fct_marketing_funnel_daily (Funnel Measures)" vertex="1">
+          <mxGeometry height="60" width="160" x="760" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="fct_booking_daily (Historical Booking Metrics)" vertex="1">
+          <mxGeometry height="60" width="160" x="760" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-32" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-27" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="fct_marketing_attribution_daily (Attribution Models)" vertex="1">
+          <mxGeometry height="60" width="160" x="760" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-28" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-4" value="">
+          <mxGeometry height="50" relative="1" width="50" x="-0.0101" as="geometry">
+            <Array as="points" />
+            <mxPoint x="40" y="140" as="sourcePoint" />
+            <mxPoint x="90" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-29" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="1PXgb0tgnudciXv17Ax6-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-30" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-40" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.019;entryY=0.2;entryDx=0;entryDy=0;" target="1PXgb0tgnudciXv17Ax6-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-41" connectable="0" parent="1PXgb0tgnudciXv17Ax6-40" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="wording + chat history" vertex="1">
+          <mxGeometry relative="1" x="0.0403" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-45" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.005;entryY=0.444;entryDx=0;entryDy=0;entryPerimeter=0;" target="1PXgb0tgnudciXv17Ax6-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-46" connectable="0" parent="1PXgb0tgnudciXv17Ax6-45" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="parameterized SELECT only" vertex="1">
+          <mxGeometry relative="1" x="0.0276" y="5" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-51" edge="1" parent="1" source="1PXgb0tgnudciXv17Ax6-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1.003;entryY=0.821;entryDx=0;entryDy=0;entryPerimeter=0;" target="1PXgb0tgnudciXv17Ax6-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="115" />
+              <mxPoint x="200" y="294.9" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-53" connectable="0" parent="1PXgb0tgnudciXv17Ax6-51" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="grounded&amp;nbsp;&lt;div&gt;explanation&amp;nbsp;&lt;div&gt;+ exact supporting&amp;nbsp;&lt;/div&gt;&lt;div&gt;metrics&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0615" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1PXgb0tgnudciXv17Ax6-54" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;span class=&quot;rQesXe MPyX&quot; style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-weight: 700; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;font&gt;&amp;nbsp;ARCHITECTURE SECURITY CONTROLS LEGEND&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;font-family: Arial, sans-serif, &amp;quot;Noto Color Emoji&amp;quot;; font-size: 16px; margin: 0px; border-bottom: 0px rgb(22, 23, 26);&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;• &lt;/span&gt;&lt;font style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 10px;&quot;&gt;Read-only platform service principal: Enforces strict SELECT-only access controls.&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;• Strict Application Allow-list: Restricts operations solely to known tables and query functions.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;• Injection Prevention: All scalar user inputs and data filters are completely parameterized.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;• Production Guardrail: Server-side multi-tenant authorization token checks are strictly enforced.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;• Zero Data Leakage: Synthetic demo sandbox profiles are utilized; real private client datasets are isolated.&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="200" width="260" x="-80" y="600" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

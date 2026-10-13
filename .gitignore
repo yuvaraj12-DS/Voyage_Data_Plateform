@@ -39,3 +39,6 @@ orchestration/airflow/.env.airflow
 ai_assistant/__pycache__/
 __pycache__/
 *.py[cod]
+*.bkp
+.gitignore.additions
+AI_ASSISTANT_COMPLETE_SOURCE.txt
